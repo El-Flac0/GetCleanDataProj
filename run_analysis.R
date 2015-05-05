@@ -1,18 +1,18 @@
-setwd("~/Desktop/UCI HAR Dataset")
+setwd("~/Desktop/UCI_HAR_Dataset")
 require(dplyr) ## initialize 'dplyr' package for data manipulation.
 require(reshape2) ## initialize 'reshape2' package to switch between 'wide' and 'long' data tables.
 
 ## read in vector of column names
-colNames <- read.table("~/Desktop/UCI HAR Dataset/features.txt")
+colNames <- read.table("~/Desktop/UCI_HAR_Dataset/features.txt")
 colNames <- lapply(colNames, as.character)
 ## read test tables into R
-x_test <- read.table("~/Desktop/UCI HAR Dataset/test/x_test.txt", quote=" ", col.names = colNames$V2)
-y_test <- read.table("~/Desktop/UCI HAR Dataset/test/y_test.txt", quote=" ", col.names = "activity")
-subject_test <- read.table("~/Desktop/UCI HAR Dataset/test/subject_test.txt", quote=" ", col.names = "subject_id")
+x_test <- read.table("~/Desktop/UCI_HAR_Dataset/test/x_test.txt", quote=" ", col.names = colNames$V2)
+y_test <- read.table("~/Desktop/UCI_HAR_Dataset/test/y_test.txt", quote=" ", col.names = "activity")
+subject_test <- read.table("~/Desktop/UCI_HAR_Dataset/test/subject_test.txt", quote=" ", col.names = "subject_id")
 ## read train tables into R
-x_train <- read.table("~/Desktop/UCI HAR Dataset/train/x_train.txt", quote=" ", col.names = colNames$V2)
-y_train <- read.table("~/Desktop/UCI HAR Dataset/train/y_train.txt", quote=" ", col.names = "activity")
-subject_train <- read.table("~/Desktop/UCI HAR Dataset/train/subject_train.txt", quote=" ", col.names = "subject_id")
+x_train <- read.table("~/Desktop/UCI_HAR_Dataset/train/x_train.txt", quote=" ", col.names = colNames$V2)
+y_train <- read.table("~/Desktop/UCI_HAR_Dataset/train/y_train.txt", quote=" ", col.names = "activity")
+subject_train <- read.table("~/Desktop/UCI_HAR_Dataset/train/subject_train.txt", quote=" ", col.names = "subject_id")
 
 ## test data ##
 ## select variables involving 'mean' and 'stdev'
@@ -59,7 +59,7 @@ tidy_data <- tidy_data[!duplicated(tidy_data),]
 
 ## Arranges data frame by subject_id, then activity, presenting table as.. 
 ## ..mean value for each feature by activity and subject
-tidy_data <- arrange(tidy_data1, subject_id)
+tidy_data <- arrange(tidy_data, subject_id)
 head(tidy_data, 30) ## quick check data looks as it should
 
 ## Write tidy data table to .txt file
